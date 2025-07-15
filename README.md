@@ -18,6 +18,55 @@ Ce backend fournit une API RESTful pour la gestion des utilisateurs dans le cadr
 
 ---
 
+🚀 Lancer le projet en local
+bash
+Copier
+Modifier
+# Installation des dépendances
+```npm install```
+
+# Créer la base de données et lancer les migrations
+```npx prisma migrate dev --name init ```
+
+# Démarrer le serveur
+```npm run start:dev```
+
+
+🗂 Structure des dossiers (extrait)
+pgsql
+Copier
+Modifier
+```
+src/
+├── utilisateurs/
+│   ├── dto/
+│   │   └── create-utilisateur.dto.ts
+│   ├── user.controller.ts
+│   ├── user.service.ts
+├── prisma/
+│   └── prisma.service.ts
+
+```
+🧪 Requêtes avec Postman / Curl
+bash
+Copier
+Modifier
+```curl -X POST http://localhost:3000/utilisateurs \
+-H "Content-Type: application/json" \
+-d '{
+  "prenom": "Marie",
+  "nom": "Curie",
+  "email": "marie@curie.fr",
+  "telephone": "0102030405",
+  "dateNaissance": "1987-07-14",
+  "villeActuelle": "Paris",
+  "paysActuel": "France",
+  "porteurProjet": "pas encore",
+  "domaineEtude": "Physique",
+  "statut": "ancien étudiant"
+}'
+```
+
 ## 🧱 Modèle `Utilisateur` (Prisma)
 
 ```ts
@@ -41,6 +90,8 @@ model Utilisateur {
   lienLinkedin       String?   // Optionnel
   dateCreation       DateTime @default(now())
 }
+```
+---
 🧾 Champs requis et optionnels
 Champ	Type	Obligatoire	Remarques
 prenom	string	✅ Oui	—
@@ -69,6 +120,8 @@ Exemple de body JSON :
 json
 Copier
 Modifier
+
+```
 {
   "prenom": "Jean",
   "nom": "Dupont",
@@ -81,6 +134,9 @@ Modifier
   "domaineEtude": "Informatique",
   "statut": "étudiant"
 }
+
+```
+
 🔹 Obtenir tous les utilisateurs
 GET /utilisateurs
 
@@ -107,46 +163,3 @@ Les données reçues via l’API sont validées avec class-validator.
 Si un champ obligatoire est manquant ou mal formé, une erreur HTTP 400 est renvoyée.
 
 Les types sont strictement validés.
-
-🚀 Lancer le projet en local
-bash
-Copier
-Modifier
-# Installation des dépendances
-npm install
-
-# Créer la base de données et lancer les migrations
-npx prisma migrate dev --name init
-
-# Démarrer le serveur
-npm run start:dev
-🧪 Requêtes avec Postman / Curl
-bash
-Copier
-Modifier
-curl -X POST http://localhost:3000/utilisateurs \
--H "Content-Type: application/json" \
--d '{
-  "prenom": "Marie",
-  "nom": "Curie",
-  "email": "marie@curie.fr",
-  "telephone": "0102030405",
-  "dateNaissance": "1987-07-14",
-  "villeActuelle": "Paris",
-  "paysActuel": "France",
-  "porteurProjet": "pas encore",
-  "domaineEtude": "Physique",
-  "statut": "ancien étudiant"
-}'
-🗂 Structure des dossiers (extrait)
-pgsql
-Copier
-Modifier
-src/
-├── utilisateurs/
-│   ├── dto/
-│   │   └── create-utilisateur.dto.ts
-│   ├── user.controller.ts
-│   ├── user.service.ts
-├── prisma/
-│   └── prisma.service.ts
