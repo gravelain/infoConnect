@@ -1,23 +1,24 @@
 <!-- Navbar -->
 <nav class="navbar">
-  <div class="logo">OIECE - InfoConnect</div>
+  <div class="logo"><a routerLink="/" style="color: aliceblue;text-decoration: none;">OIECE - InfoConnect</a></div>
 
   <!-- Hamburger button pour mobile -->
-  <div class="hamburger" (click)="toggleMenu()">
+  <div class="hamburger" [class.active]="menuActive" (click)="toggleMenu()">
     <span></span>
     <span></span>
     <span></span>
   </div>
 
   <ul class="nav-links" [class.active]="menuActive">
-    <li><a routerLink="/">Accueil</a></li>
-    <li><a routerLink="/user-form">S'enregistrer</a></li>
-    <li><a routerLink="/about">A propos</a></li>
+    <li><a routerLink="/" (click)="closeMenu()">Accueil</a></li>
+    <li><a routerLink="/user-form" (click)="closeMenu()">S'enregistrer</a></li>
+    <li><a routerLink="/about" (click)="closeMenu()">A propos</a></li>
   </ul>
 </nav>
 
 <!-- Contenu principal -->
 <main>
+  <br/> <br/> 
   <router-outlet></router-outlet>
 </main>
 

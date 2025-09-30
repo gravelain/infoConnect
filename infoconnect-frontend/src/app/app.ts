@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +11,19 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   styleUrls: ['./app.scss'],
 })
 export class App {
-  menuActive = false;
 
+  constructor(private router: Router) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.menuActive = false; // ferme le menu à chaque navigation
+      });
+  }
+  menuActive = false;
   toggleMenu() {
     this.menuActive = !this.menuActive;
+  }
+  closeMenu() {
+    this.menuActive = false;
   }
 }
