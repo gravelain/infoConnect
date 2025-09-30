@@ -1,0 +1,27 @@
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">OIECE - InfoConnect</div>
+
+  <!-- Hamburger button pour mobile -->
+  <div class="hamburger" (click)="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <ul class="nav-links" [class.active]="menuActive">
+    <li><a routerLink="/">Accueil</a></li>
+    <li><a routerLink="/user-form">S'enregistrer</a></li>
+    <li><a routerLink="/about">A propos</a></li>
+  </ul>
+</nav>
+
+<!-- Contenu principal -->
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>Vos données sont collectées et traitées avec le plus grand soin, conformément au RGPD, pour garantir leur confidentialité et leur sécurité.</p>
+</footer>

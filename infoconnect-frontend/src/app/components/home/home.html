@@ -1,0 +1,22 @@
+<header class="hero">
+  <div class="hero-content">
+     <h1>Bienvenue sur InfoConnect</h1>
+    <p>
+      Rejoignez notre communauté d'étudiants et d'anciens étudiants camerounais à travers le monde. Inscrivez-vous sur InfoConnect pour accéder à vos informations, partager vos projets et rester connecté avec notre réseau.
+    </p>
+    <a mat-raised-button color="primary" routerLink="/user-form">S'enregistrer maintenant</a>
+  </div>
+</header>
+
+
+<!-- Mes informations -->
+<section id="mes-infos" class="mes-infos">
+  <mat-card>
+    <h2>Retrouver vos informations</h2>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Entrez votre email</mat-label>
+      <input matInput [(ngModel)]="emailSearch" placeholder="votre@email.com">
+    </mat-form-field>
+    <button mat-raised-button color="accent" (click)="onSearch()">Rechercher</button>
+  </mat-card>
+</section>
