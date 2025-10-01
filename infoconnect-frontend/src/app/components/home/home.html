@@ -1,22 +1,69 @@
 <header class="hero">
   <div class="hero-content">
-     <h1>Bienvenue sur InfoConnect</h1>
+    <h1>OIECE <span>InfoConnect</span></h1>
     <p>
-      Rejoignez notre communauté d'étudiants et d'anciens étudiants camerounais à travers le monde. Inscrivez-vous sur InfoConnect pour accéder à vos informations, partager vos projets et rester connecté avec notre réseau.
+      La plateforme d'inscription des étudiants et anciens étudiants camerounais à travers le monde.
+      Restez connectés, partagez vos projets et accédez à un réseau actif et solidaire.
     </p>
-    <a mat-raised-button color="primary" routerLink="/user-form">S'enregistrer maintenant</a>
+    <div class="hero-buttons">
+      <a mat-raised-button color="primary" routerLink="/user-form">S'enregistrer</a>
+      <!-- <a mat-stroked-button color="accent" routerLink="/about">En savoir plus</a> -->
+    </div>
   </div>
 </header>
 
+<!-- Pourquoi InfoConnect -->
+<section class="features">
+  <h2>Pourquoi nous rejoindre ?</h2>
+  <div class="features-grid">
+    <mat-card>
+      <!-- <mat-icon color="primary">groups</mat-icon> -->
+      <h3>Une communauté engagée</h3>
+      <p>Rejoignez un réseau d’étudiants et de professionnels camerounais partout dans le monde.</p>
+    </mat-card>
+    <mat-card>
+      <!-- <mat-icon color="primary">emoji_objects</mat-icon> -->
+      <h3>Partage de projets</h3>
+      <p>Présentez vos idées et collaborez avec d'autres membres passionnés.</p>
+    </mat-card>
+    <mat-card>
+      <!-- <mat-icon color="primary">school</mat-icon> -->
+      <h3>Opportunités de financement</h3>
+      <p>Accédez à des partenaires stratéiques prets à financer vos projets .</p>
+    </mat-card>
+  </div>
+</section>
 
-<!-- Mes informations -->
+<!-- Recherche d’informations
 <section id="mes-infos" class="mes-infos">
   <mat-card>
-    <h2>Retrouver vos informations</h2>
+    <h2>🔍 Retrouver vos informations</h2>
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Entrez votre email</mat-label>
       <input matInput [(ngModel)]="emailSearch" placeholder="votre@email.com">
     </mat-form-field>
     <button mat-raised-button color="accent" (click)="onSearch()">Rechercher</button>
   </mat-card>
+</section> -->
+
+<!-- Témoignages -->
+<section class="testimonials">
+  <h2>Ce que disent nos membres</h2>
+  <div class="testimonials-grid">
+    <mat-card>
+      <p>"InfoConnect m’a permis de retrouver d’anciens camarades et de lancer un projet collectif !"</p>
+      <h4>- Aline, Paris</h4>
+    </mat-card>
+    <mat-card>
+      <p>"Grâce au réseau, j’ai trouvé un stage dans une entreprise partenaire."</p>
+      <h4>- Jean, Douala</h4>
+    </mat-card>
+  </div>
+</section>
+
+<!-- Call-to-action final -->
+<section class="cta">
+  <h2>Prêt à rejoindre l’aventure ?</h2>
+  <p>En seulement <b>3 minutes</b>, créez votre profil et connectez-vous à notre réseau mondial.</p>
+  <a mat-raised-button color="primary" routerLink="/user-form">👉 Je m'inscris maintenant</a>
 </section>

@@ -12,6 +12,12 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
+  // Autoriser Angular (http://localhost:4200) à parler au backend
+  app.enableCors({
+    origin: 'http://localhost:4200',
+    methods: 'GET,POST,PATCH,DELETE',
+    allowedHeaders: 'Content-Type,Authorization',
+  });
 
   await app.listen(5000);
 }

@@ -1,126 +1,97 @@
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: #007bff;
-  color: white;
-  position: relative;
-  z-index: 10;
-
-  .logo {
-    font-weight: bold;
-    font-size: 1.6rem;
-    letter-spacing: 0.5px;
-  }
-
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    transition: all 0.3s ease;
-
-    li a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-
-    span {
-      width: 25px;
-      height: 3px;
-      background-color: white;
-      border-radius: 2px;
-      transition: 0.3s;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .hamburger {
-      display: flex;
-    }
-
-    .nav-links {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background-color: #007bff;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 0;
-      display: none;
-
-      &.active {
-        display: flex;
-      }
-
-      li a {
-        font-size: 1.1rem;
-      }
-    }
-  }
-}
-
-
-/* Hero */
-// .hero {
-//   background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
-//   color: white;
-//   text-align: center;
-//   padding: 6rem 2rem;
-//   .hero-content {
-//     max-width: 700px;
-//     margin: auto;
-//     h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-//     p { font-size: 1.2rem; margin-bottom: 2rem; }
-//   }
-// }
-
-// mon ancien hero
-
+/* ===== Hero ===== */
 .hero {
   background: url('/assets/head.jpg') no-repeat center center/cover;
   position: relative;
   color: white;
   text-align: center;
-  padding: 6rem 2rem;
-  background-size: cover;
-  background-position: center;
+  padding: 8rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    // background-color: rgba(0, 0, 0, 0.5); // overlay pour lisibilité
+    background-color: rgba(0, 0, 0, 0.45);
     z-index: 1;
   }
 
   .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 700px;
+    max-width: 800px;
     margin: auto;
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+
+      span {
+        color: #ffd700;
+      }
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
   }
 }
 
+/* ===== Features ===== */
+.features {
+  padding: 4rem 2rem;
+  text-align: center;
 
-/* Mes informations */
+  h2 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+
+  .features-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin-top: 2rem;
+
+    mat-card {
+      padding: 2rem;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+      mat-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      h3 {
+        margin: 0.5rem 0;
+      }
+
+      p {
+        font-size: 0.95rem;
+        color: #555;
+      }
+    }
+  }
+}
+
+/* ===== Mes infos ===== */
 .mes-infos {
   padding: 3rem 1rem;
+  text-align: center;
+
   mat-card {
     max-width: 500px;
     margin: auto;
@@ -131,28 +102,59 @@
   }
 }
 
-/* Footer */
-.footer {
-  background-color: #f8f9fa;
-  color: #333;
+/* ===== Testimonials ===== */
+.testimonials {
+  padding: 4rem 2rem;
+  background-color: #f5f7fa;
   text-align: center;
-  padding: 2rem 1rem;
-  font-size: 0.95rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
 
-  p {
-    margin: 0;
-    line-height: 1.5;
+  h2 {
+    margin-bottom: 2rem;
   }
 
-  a {
-    color: #007bff;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
+  .testimonials-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+    mat-card {
+      padding: 2rem;
+      border-left: 4px solid #007bff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+      p {
+        font-style: italic;
+        margin-bottom: 1rem;
+      }
+
+      h4 {
+        font-weight: bold;
+        color: #007bff;
+      }
     }
   }
 }
-/* Bouton principal */
+
+/* ===== CTA ===== */
+.cta {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  text-align: center;
+  padding: 4rem 2rem;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+
+  a {
+    font-size: 1.1rem;
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+  }
+}

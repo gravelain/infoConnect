@@ -20,7 +20,6 @@ model Utilisateur {
   email              String   @unique
   telephone          String
   dateNaissance      DateTime
-  lieuNaissance      String?   // <- optionnel
   villeNaissance     String?   // <- optionnel
   villeActuelle      String
   paysActuel         String

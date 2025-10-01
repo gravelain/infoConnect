@@ -42,4 +42,15 @@ export class UserController {
   async remove(@Param('id', ParseIntPipe) id: number) {
     return this.userService.remove(id);
   }
+
+  @Get('check-email/:email')
+  async checkEmail(@Param('email') email: string) {
+    const exists = await this.userService.emailExists(email);
+    return { exists };
+  }
+
+  @Post('find-user-by-email')
+  async findByEmail(@Body('email') email: string) {
+    return this.userService.findOnebyEmail(email);
+  }
 }

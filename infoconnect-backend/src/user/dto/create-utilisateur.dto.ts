@@ -1,7 +1,6 @@
 import {
   IsString,
   IsDateString,
-  IsUrl,
   IsIn,
   IsEmail,
   IsOptional,
@@ -22,10 +21,6 @@ export class CreateUtilisateurDto {
 
   @IsDateString()
   dateNaissance: string;
-
-  @IsOptional()
-  @IsString()
-  lieuNaissance?: string;
 
   @IsOptional()
   @IsString()
@@ -59,6 +54,6 @@ export class CreateUtilisateurDto {
   nomEntreprise?: string;
 
   @IsOptional()
-  @IsUrl()
+  @IsString()
   lienLinkedin?: string;
 }
