@@ -1,127 +1,139 @@
-# infoConnect
-Optimisez la gestion de votre communauté WhatsApp grâce à une collecte de données structurée et sécurisée. InfoConnect transforme vos interactions en informations exploitables pour une collaboration renforcée
+# InfoConnect
 
+InfoConnect est une plateforme **de mise en réseau des étudiants et anciens étudiants camerounais** à travers le monde.  
+Elle permet de **s’inscrire, partager ses projets, retrouver des camarades et accéder à des opportunités académiques ou professionnelles**, le tout via une interface simple et sécurisée.
 
-# 📦 InfoConnect - Backend API
+---
 
-Ce backend fournit une API RESTful pour la gestion des utilisateurs dans le cadre d'un projet de mise en réseau des anciens étudiants. Il est construit avec **NestJS**, utilise **Prisma ORM** pour la base de données **PostgreSQL**.
+## 🚀 Fonctionnalités principales
+
+- Création et gestion de profils utilisateurs
+- Recherche d’utilisateurs par email
+- Validation des champs côté serveur et client
+- Gestion des emails de confirmation
+- Notifications UI/UX modernes (success, erreur, alertes persistantes)
+- Affichage responsive et animations au scroll
+- Interface moderne et intuitive
 
 ---
 
 ## ⚙️ Technologies utilisées
 
-- [NestJS](https://nestjs.com/) (v11)
-- [Prisma](https://www.prisma.io/)
-- [PostgreSQL](https://www.postgresql.org/)
-- TypeScript
-- class-validator
+### Backend
+
+- [NestJS](https://nestjs.com/) v11 – framework Node.js TypeScript
+- [Prisma ORM](https://www.prisma.io/) – gestion de la base de données
+- PostgreSQL – base de données relationnelle
+- class-validator – validation des DTOs
+- Node.js & TypeScript
+
+### Frontend
+
+- Angular 16 (standalone components)
+- Angular Material – composants UI modernes
+- RxJS – gestion des observables
+- HTML5 & SCSS – mise en page et styles modernes
 
 ---
 
-🚀 Lancer le projet en local
+## 🗂 Structure du projet
+
+infoConnect/
+├── backend/
+│ ├── src/
+│ │ ├── user/
+│ │ │ ├── dto/
+│ │ │ │ └── create-utilisateur.dto.ts
+│ │ │ ├── user.controller.ts
+│ │ │ └── user.service.ts
+│ │ ├── prisma/
+│ │ │ └── prisma.service.ts
+│ │ └── email/
+│ │ └── email.service.ts
+│ ├── prisma/
+│ │ └── schema.prisma
+│ └── main.ts
+├── frontend/
+│ ├── src/app/
+│ │ ├── components/
+│ │ │ ├── user-form/
+│ │ │ └── home/
+│ │ ├── services/
+│ │ │ └── user.service.ts
+│ │ └── app-routing.module.ts
+│ ├── assets/
+│ └── styles/
+├── README.md
+└── package.json
+
+yaml
+Copier le code
+
+---
+
+## 💾 Setup Backend (NestJS + Prisma + PostgreSQL)
+
+1. **Installation des dépendances**
+
+```bash
+cd backend
+npm install
+Configurer la base de données
+
+Crée une base PostgreSQL infoconnect
+
+Met à jour le .env avec :
+
+ini
+Copier le code
+DATABASE_URL="postgresql://user:password@localhost:5432/infoconnect?schema=public"
+Lancer les migrations Prisma
+
 bash
-Copier
-Modifier
-# Installation des dépendances
-```npm install```
+Copier le code
+npx prisma migrate dev --name init
+Démarrer le serveur NestJS
 
-# Créer la base de données et lancer les migrations
-```npx prisma migrate dev --name init ```
-
-# Démarrer le serveur
-```npm run start:dev```
-
-
-🗂 Structure des dossiers (extrait)
-pgsql
-Copier
-Modifier
-```
-src/
-├── utilisateurs/
-│   ├── dto/
-│   │   └── create-utilisateur.dto.ts
-│   ├── user.controller.ts
-│   ├── user.service.ts
-├── prisma/
-│   └── prisma.service.ts
-
-```
-🧪 Requêtes avec Postman / Curl
 bash
-Copier
-Modifier
-```curl -X POST http://localhost:3000/utilisateurs \
--H "Content-Type: application/json" \
--d '{
-  "prenom": "Marie",
-  "nom": "Curie",
-  "email": "marie@curie.fr",
-  "telephone": "0102030405",
-  "dateNaissance": "1987-07-14",
-  "villeActuelle": "Paris",
-  "paysActuel": "France",
-  "porteurProjet": "pas encore",
-  "domaineEtude": "Physique",
-  "statut": "ancien étudiant"
-}'
-```
+Copier le code
+npm run start:dev
+L’API sera accessible sur http://localhost:3000
 
-## 🧱 Modèle `Utilisateur` (Prisma)
-
-```ts
+🧪 API REST
+Modèle Utilisateur (Prisma)
+ts
+Copier le code
 model Utilisateur {
-  id                 Int      @id @default(autoincrement())
-  prenom             String
-  nom                String
-  email              String   @unique
-  telephone          String
-  dateNaissance      DateTime
-  lieuNaissance      String?   // Optionnel
-  villeNaissance     String?   // Optionnel
-  villeActuelle      String
-  paysActuel         String
-  porteurProjet      String    // "oui" | "non" | "pas encore"
-  domaineEtude       String
-  dernierDiplome     String?   // Optionnel
-  statut             String    // "étudiant" | "ancien étudiant"
-  posteOccupe        String?   // Optionnel
-  nomEntreprise      String?   // Optionnel
-  lienLinkedin       String?   // Optionnel
-  dateCreation       DateTime @default(now())
+  id              Int      @id @default(autoincrement())
+  prenom          String
+  nom             String
+  email           String   @unique
+  telephone       String
+  dateNaissance   DateTime
+  villeNaissance  String?
+  villeActuelle   String
+  paysActuel      String
+  porteurProjet   String
+  domaineEtude    String
+  dernierDiplome  String?
+  statut          String
+  posteOccupe     String?
+  nomEntreprise   String?
+  lienLinkedin    String?
+  dateCreation    DateTime @default(now())
 }
-```
----
-🧾 Champs requis et optionnels
-Champ	Type	Obligatoire	Remarques
-prenom	string	✅ Oui	—
-nom	string	✅ Oui	—
-email	string	✅ Oui	Doit être unique, format email valide
-telephone	string	✅ Oui	—
-dateNaissance	string	✅ Oui	Format ISO (YYYY-MM-DD)
-lieuNaissance	string	❌ Non	—
-villeNaissance	string	❌ Non	—
-villeActuelle	string	✅ Oui	—
-paysActuel	string	✅ Oui	—
-porteurProjet	string	✅ Oui	"oui", "non", "pas encore"
-domaineEtude	string	✅ Oui	—
-dernierDiplome	string	❌ Non	—
-statut	string	✅ Oui	"étudiant", "ancien étudiant"
-posteOccupe	string	❌ Non	—
-nomEntreprise	string	❌ Non	—
-lienLinkedin	string	❌ Non	Doit être une URL valide (si présent)
+Routes API
+Méthode	Endpoint	Description
+POST	/utilisateurs	Créer un utilisateur
+GET	/utilisateurs	Obtenir tous les utilisateurs
+GET	/utilisateurs/:id	Obtenir un utilisateur par ID
+PATCH	/utilisateurs/:id	Mettre à jour un utilisateur
+DELETE	/utilisateurs/:id	Supprimer un utilisateur
 
-📡 API Routes
-🔹 Créer un utilisateur
-POST /utilisateurs
-
-Exemple de body JSON :
+Exemple POST
 
 json
-Copier
-Modifier
-
-```
+Copier le code
 {
   "prenom": "Jean",
   "nom": "Dupont",
@@ -134,32 +146,87 @@ Modifier
   "domaineEtude": "Informatique",
   "statut": "étudiant"
 }
+Validation stricte côté serveur via DTOs
 
-```
+Erreurs 400 si données invalides
 
-🔹 Obtenir tous les utilisateurs
-GET /utilisateurs
+Vérification de l’unicité de l’email
 
-🔹 Obtenir un utilisateur par ID
-GET /utilisateurs/:id
+⚡ Setup Frontend (Angular + Material)
+Installation des dépendances
 
-🔹 Modifier un utilisateur
-PATCH /utilisateurs/:id
+bash
+Copier le code
+cd frontend
+npm install
+Lancer l’application Angular
 
-Exemple de body JSON (partiel possible) :
+bash
+Copier le code
+ng serve --open
+Accessible sur http://localhost:4200
 
-json
-Copier
-Modifier
-{
-  "nomEntreprise": "TechCorp"
-}
-🔹 Supprimer un utilisateur
-DELETE /utilisateurs/:id
+Composants principaux
+HomeComponent – page d’accueil responsive et moderne
 
-🔐 Validation des champs (DTO)
-Les données reçues via l’API sont validées avec class-validator.
+UserFormComponent – formulaire d’inscription avec validations et notifications persistantes
 
-Si un champ obligatoire est manquant ou mal formé, une erreur HTTP 400 est renvoyée.
+Shared – alertes persistantes, snackbar, animations fade/slide
 
-Les types sont strictement validés.
+Notifications UI/UX
+Success → vert, texte clair et persistant
+
+Error → rouge, persistant + popup
+
+Warning → orange, persistant
+
+Animations fade-in / slide-in sur scroll
+
+Responsive mobile & desktop
+
+Validations Formulaire Angular
+Validators.required
+
+Validators.email
+
+URL LinkedIn valide
+
+Email unique vérifié avant POST
+
+Gestion des erreurs côté serveur et affichage friendly
+
+UI/UX Modern
+Hero section avec overlay, titre et CTA clairs
+
+Features : grilles interactives et responsive
+
+Testimonials : cartes modernes et lisibles
+
+CTA final pour inciter à s’inscrire
+
+Animations au scroll pour dynamiser le contenu
+
+Mobile-friendly : boutons empilés, texte lisible, padding adaptatif
+
+📌 Bonnes pratiques
+Utiliser HttpClient Angular avec catchError pour gérer les erreurs
+
+Notifications persistantes via BehaviorSubject ou Subject
+
+Tester l’API avec Postman ou Curl
+
+Séparer .env pour dev/prod
+
+Préparer l’authentification (JWT) pour sécuriser les routes sensibles
+
+🖼 Screenshots (optionnel)
+Ajouter ici des images de la homepage, formulaire et notifications
+
+📝 Contact
+Pour toute question, suggestion ou contribution, contactez l’auteur ou ouvrez une issue sur le dépôt GitHub.
+
+InfoConnect – Connectez, partagez et créez votre réseau mondial !
+
+
+
+
