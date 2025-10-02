@@ -27,7 +27,7 @@ async function bootstrap() {
 
   // Utilise le port fourni par Render, sinon 3000 par défaut
   const port = process.env.PORT || 3000;
-  await app.listen(port);
+  await app.listen(port, '0.0.0.0');
 
   console.log(`🚀 Backend running on port ${port}`);
 }
